@@ -193,24 +193,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ----------------------------------------------------------------------
-    // 4. UNO CARD & COUPON INTERACTION
+    // 4. TOGETHER COUNTER & LIVE TIMER
     // ----------------------------------------------------------------------
-    if (unoCard) {
-        unoCard.addEventListener('click', (e) => {
-            unoCard.style.transform = 'scale(1.15) rotate(0deg)';
-            setTimeout(() => {
-                unoCard.style.transform = '';
-            }, 400);
+    // EDIT YOUR TOGETHER START DATE HERE (Format: YYYY-MM-DD or YYYY-MM-DDTHH:mm:ss)
+    const TOGETHER_START_DATE = '2023-01-01T00:00:00';
 
-            // Spawn floating hearts burst around card
-            const rect = unoCard.getBoundingClientRect();
-            for (let i = 0; i < 15; i++) {
-                const x = rect.left + rect.width / 2 + (Math.random() - 0.5) * 120;
-                const y = rect.top + rect.height / 2 + (Math.random() - 0.5) * 120;
-                createHeartParticle(x, y);
-            }
-        });
+    const yearsCount = document.getElementById('yearsCount');
+    const daysCount = document.getElementById('daysCount');
+    const hoursCount = document.getElementById('hoursCount');
+    const minutesCount = document.getElementById('minutesCount');
+    const secondsCount = document.getElementById('secondsCount');
+
+    function updateTogetherTimer() {
+        const startDate = new Date(TOGETHER_START_DATE);
+        const now = new Date();
+        let diffMs = now - startDate;
+
+        if (isNaN(startDate.getTime()) || diffMs < 0) {
+            diffMs = 0;
+        }
+
+        const seconds = Math.floor((diffMs / 1000) % 60);
+        const minutes = Math.floor((diffMs / (1000 * 60)) % 60);
+        const hours = Math.floor((diffMs / (1000 * 60 * 60)) % 24);
+        
+        const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+        const years = Math.floor(totalDays / 365.25);
+        const days = Math.floor(totalDays % 365.25);
+
+        if (yearsCount) yearsCount.textContent = String(years).padStart(2, '0');
+        if (daysCount) daysCount.textContent = String(days).padStart(2, '0');
+        if (hoursCount) hoursCount.textContent = String(hours).padStart(2, '0');
+        if (minutesCount) minutesCount.textContent = String(minutes).padStart(2, '0');
+        if (secondsCount) secondsCount.textContent = String(seconds).padStart(2, '0');
     }
+
+    updateTogetherTimer();
+    setInterval(updateTogetherTimer, 1000);
 
     if (claimBtn) {
         claimBtn.addEventListener('click', () => {
