@@ -1,5 +1,6 @@
 /* ==========================================================================
    BIRTHDAY WISH INTERACTIVE APPLICATION - JAVASCRIPT LOGIC
+   Music: Replace assets/music.mp3 with your own song to customise.
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -143,87 +144,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ----------------------------------------------------------------------
-    // 3. WEB AUDIO API ROMANTIC MELODY SYNTHESIZER
+    // 3. HTML5 AUDIO MUSIC PLAYER (assets/music.mp3)
+    // Replace assets/music.mp3 with any romantic song you love!
     // ----------------------------------------------------------------------
-    let audioCtx = null;
     let isPlayingMusic = false;
-    let melodyInterval = null;
 
-    function initAudioContext() {
-        if (!audioCtx) {
-            const AudioContext = window.AudioContext || window.webkitAudioContext;
-            audioCtx = new AudioContext();
-        }
-        if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-        }
-    }
+    // Create a hidden <audio> element pointing to the user-supplied music file
+    const bgMusic = new Audio('assets/music.mp3');
+    bgMusic.loop = true;
+    bgMusic.volume = 0.6;
 
-    // Play a gentle romantic acoustic note
-    function playNote(freq, duration = 0.8, type = 'sine', volume = 0.12) {
-        if (!audioCtx || !isPlayingMusic) return;
-
-        try {
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-
-            osc.type = type;
-            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
-            // Envelope decay for soft acoustic lullaby effect
-            gain.gain.setValueAtTime(0, audioCtx.currentTime);
-            gain.gain.linearRampToValueAtTime(volume, audioCtx.currentTime + 0.05);
-            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
-
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-
-            osc.start();
-            osc.stop(audioCtx.currentTime + duration);
-        } catch (e) {
-            console.error(e);
-        }
-    }
-
-    // Romantic Arpeggio Notes (C Major 7th / F Major / G Major Progression)
-    const melodyNotes = [
-        261.63, 329.63, 392.00, 493.88, 523.25, 493.88, 392.00, 329.63, // Cmaj7
-        349.23, 440.00, 523.25, 659.25, 698.46, 659.25, 523.25, 440.00, // Fmaj7
-        392.00, 493.88, 587.33, 698.46, 783.99, 698.46, 587.33, 493.88  // G7
-    ];
-
-    function startMelodyLoop() {
-        let noteIndex = 0;
-        if (melodyInterval) clearInterval(melodyInterval);
-
-        melodyInterval = setInterval(() => {
-            if (!isPlayingMusic) return;
-            const freq = melodyNotes[noteIndex % melodyNotes.length];
-            playNote(freq, 1.2, 'sine', 0.15);
-
-            // Harmony note
-            if (noteIndex % 4 === 0) {
-                playNote(freq / 2, 1.8, 'triangle', 0.08);
-            }
-
-            noteIndex++;
-        }, 400);
-    }
+    // Gracefully handle missing file — no crash, just silent
+    bgMusic.addEventListener('error', () => {
+        console.warn('Music file not found: assets/music.mp3 — add your song there to enable music!');
+        musicText.textContent = 'No music.mp3';
+        musicToggle.disabled = true;
+        musicToggle.style.opacity = '0.5';
+    });
 
     function toggleMusic() {
-        initAudioContext();
         isPlayingMusic = !isPlayingMusic;
 
         if (isPlayingMusic) {
+            bgMusic.play().catch(() => {
+                // Autoplay policy blocked; user gesture required
+                isPlayingMusic = false;
+            });
             musicToggle.classList.add('playing');
             musicText.textContent = 'Pause Music';
             if (vinylRecord) vinylRecord.classList.remove('paused');
-            startMelodyLoop();
         } else {
+            bgMusic.pause();
             musicToggle.classList.remove('playing');
             musicText.textContent = 'Play Music';
             if (vinylRecord) vinylRecord.classList.add('paused');
-            if (melodyInterval) clearInterval(melodyInterval);
         }
     }
 
@@ -262,14 +216,6 @@ document.addEventListener('DOMContentLoaded', () => {
         claimBtn.addEventListener('click', () => {
             couponTicket.classList.add('claimed');
             createConfettiBurst(120);
-
-            // Play celebratory chime sound
-            if (isPlayingMusic && audioCtx) {
-                playNote(523.25, 0.4, 'sine', 0.2);
-                setTimeout(() => playNote(659.25, 0.4, 'sine', 0.2), 150);
-                setTimeout(() => playNote(783.99, 0.6, 'sine', 0.25), 300);
-                setTimeout(() => playNote(1046.50, 1.0, 'sine', 0.3), 450);
-            }
         });
     }
 
