@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------------------------
     // 4. TOGETHER COUNTER & LIVE TIMER
     // ----------------------------------------------------------------------
-    // EDIT YOUR TOGETHER START DATE HERE (Format: YYYY-MM-DD or YYYY-MM-DDTHH:mm:ss)
+    // START DATE: 10 December 2021
     const TOGETHER_START_DATE = '2021-12-10T00:00:00';
 
     const yearsCount = document.getElementById('yearsCount');
@@ -207,19 +207,33 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateTogetherTimer() {
         const startDate = new Date(TOGETHER_START_DATE);
         const now = new Date();
-        let diffMs = now - startDate;
 
-        if (isNaN(startDate.getTime()) || diffMs < 0) {
-            diffMs = 0;
+        if (isNaN(startDate.getTime()) || now < startDate) {
+            if (yearsCount) yearsCount.textContent = '00';
+            if (daysCount) daysCount.textContent = '00';
+            if (hoursCount) hoursCount.textContent = '00';
+            if (minutesCount) minutesCount.textContent = '00';
+            if (secondsCount) secondsCount.textContent = '00';
+            return;
         }
 
-        const seconds = Math.floor((diffMs / 1000) % 60);
-        const minutes = Math.floor((diffMs / (1000 * 60)) % 60);
+        // Calculate exact calendar years
+        let years = now.getFullYear() - startDate.getFullYear();
+        let lastAnniversary = new Date(startDate);
+        lastAnniversary.setFullYear(now.getFullYear());
+
+        if (now < lastAnniversary) {
+            years--;
+            lastAnniversary.setFullYear(now.getFullYear() - 1);
+        }
+
+        // Time difference since the last anniversary
+        const diffMs = now - lastAnniversary;
+
+        const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diffMs / (1000 * 60 * 60)) % 24);
-        
-        const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-        const years = Math.floor(totalDays / 365.25);
-        const days = Math.floor(totalDays % 365.25);
+        const minutes = Math.floor((diffMs / (1000 * 60)) % 60);
+        const seconds = Math.floor((diffMs / 1000) % 60);
 
         if (yearsCount) yearsCount.textContent = String(years).padStart(2, '0');
         if (daysCount) daysCount.textContent = String(days).padStart(2, '0');
