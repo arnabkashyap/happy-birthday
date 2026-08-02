@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. TOGETHER COUNTER & LIVE TIMER
     // ----------------------------------------------------------------------
     // EDIT YOUR TOGETHER START DATE HERE (Format: YYYY-MM-DD or YYYY-MM-DDTHH:mm:ss)
-    const TOGETHER_START_DATE = '2023-01-01T00:00:00';
+    const TOGETHER_START_DATE = '2021-12-10T00:00:00';
 
     const yearsCount = document.getElementById('yearsCount');
     const daysCount = document.getElementById('daysCount');
