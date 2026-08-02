@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love! 💖</title>
+    <meta name="description" content="A personalized, interactive birthday wish website filled with love, sweet memories, music, and romantic surprises.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+    
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Animated Swirl & Canvas Layers -->
+    <div class="swirl-bg" id="swirlBg"></div>
+    <canvas id="heartCanvas"></canvas>
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- Floating Top Music Controller -->
+    <button class="music-toggle-btn" id="musicToggle" aria-label="Toggle Romantic Music" title="Click for romantic music 🎵">
+        <span class="music-icon" id="musicIcon">🎵</span>
+        <span class="music-text" id="musicText">Play Music</span>
+        <span class="music-waves" id="musicWaves">
+            <span></span><span></span><span></span>
+        </span>
+    </button>
+
+    <!-- Main Presentation Container -->
+    <main class="presentation-container">
+
+        <!-- ================= SLIDE 1: WELCOME & COVER ================= -->
+        <section class="slide active" id="slide1" data-slide="1">
+            <div class="glass-card welcome-card">
+                <div class="badge-tag">For Someone Special ✨</div>
+                <h1 class="main-title">Happy Birthday!</h1>
+                
+                <div class="hero-image-wrapper">
+                    <div class="image-frame float-animation">
+                        <img src="assets/teddy_bear.png" alt="Cute Teddy Bear with Pink Bouquet" class="slide-img" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'240\' height=\'240\' viewBox=\'0 0 240 240\'><rect width=\'100%\' height=\'100%\' fill=\'%23ffb6c1\'/><text x=\'50%\' y=\'50%\' font-size=\'48\' text-anchor=\'middle\' fill=\'%23800040\'>🧸💐</text></svg>';">
+                    </div>
+                    <div class="sparkle-aura"></div>
+                </div>
+
+                <p class="subtitle">Special delivery just for you &lt;3</p>
+
+                <button class="btn btn-primary btn-next" data-target="2">
+                    Next &gt;&gt;
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ================= SLIDE 2: ROMANTIC LETTER & PHOTO ================= -->
+        <section class="slide" id="slide2" data-slide="2">
+            <div class="glass-card letter-card">
+                <div class="letter-layout">
+                    <!-- Left Photo -->
+                    <div class="letter-photo-side">
+                        <div class="portrait-frame">
+                            <img src="assets/couple_photo.jpg" alt="Our Romantic Portrait" class="couple-portrait" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'260\' height=\'320\' viewBox=\'0 0 260 320\'><rect width=\'100%\' height=\'100%\' fill=\'%23ff80bf\'/><text x=\'50%\' y=\'45%\' font-size=\'64\' text-anchor=\'middle\' fill=\'%23ffffff\'>👩‍❤️‍👨</text><text x=\'50%\' y=\'65%\' font-size=\'18\' font-family=\'sans-serif\' text-anchor=\'middle\' fill=\'%235c0632\'>Our Cute Photo</text></svg>';">
+                            <div class="photo-glow"></div>
+                        </div>
+                        <span class="photo-caption">Together is my favorite place to be 💕</span>
+                    </div>
+
+                    <!-- Right Letter Content -->
+                    <div class="letter-text-side">
+                        <h2 class="letter-heading">Dearest Birthday Girl,</h2>
+                        <div class="letter-scroll-body">
+                            <p>Happy Birthday to the most amazing, gorgeous, and adorable person in my world! 🌸</p>
+                            <p>From the moment you came into my life, every day has been brighter, sweeter, and so much more meaningful. Your smile never fails to melt my heart, and your laugh is literally my favorite sound in the universe.</p>
+                            <p>Thank you for all the happy memories we've shared, for your kindness, your warmth, and for being uniquely, wonderfully you. On your special day, I wish you all the joy, love, and magic your beautiful heart deserves.</p>
+                            <p class="letter-signature">Forever & Always Yours,<br><span>With all my love 💖</span></p>
+                        </div>
+                        <button class="btn btn-primary btn-next align-right" data-target="3">
+                            Next &gt;&gt;
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= SLIDE 3: VINYL RECORD & MEMORY COLLAGE ================= -->
+        <section class="slide" id="slide3" data-slide="3">
+            <div class="glass-card collage-card">
+                <h2 class="section-heading">You're my always &amp; forever</h2>
+                <p class="section-subtext">Spinning our sweet memories together... 🎶</p>
+
+                <div class="collage-stage">
+                    <!-- Vinyl Record Player Center -->
+                    <div class="vinyl-wrapper" id="vinylRecord" title="Click to spin the song of us! 🎵">
+                        <div class="vinyl-disc spin-animation">
+                            <div class="vinyl-grooves"></div>
+                            <div class="vinyl-label">
+                                <div class="vinyl-center-hole"></div>
+                                <span class="vinyl-title">Our Song 💗</span>
+                            </div>
+                        </div>
+                        <div class="tonearm" id="tonearm"></div>
+                    </div>
+
+                    <!-- Surrounding 4 Polaroid Cards -->
+                    <div class="polaroid polaroid-1" style="--tilt: -8deg;">
+                        <div class="tape-strip"></div>
+                        <div class="polaroid-img-wrapper">
+                            <img src="assets/polaroid_1.jpg" alt="Memory 1 - Sunset Walk" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'><rect width=\'100%\' height=\'100%\' fill=\'%23ffb6c1\'/><text x=\'50%\' y=\'50%\' font-size=\'40\' text-anchor=\'middle\'>🌅</text></svg>';">
+                        </div>
+                        <p class="polaroid-text">Sunset Walks 🌅</p>
+                    </div>
+
+                    <div class="polaroid polaroid-2" style="--tilt: 6deg;">
+                        <div class="tape-strip"></div>
+                        <div class="polaroid-img-wrapper">
+                            <img src="assets/polaroid_2.jpg" alt="Memory 2 - Cafe Dates" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'><rect width=\'100%\' height=\'100%\' fill=\'%23ff80bf\'/><text x=\'50%\' y=\'50%\' font-size=\'40\' text-anchor=\'middle\'>☕</text></svg>';">
+                        </div>
+                        <p class="polaroid-text">Cozy Cafe Dates ☕</p>
+                    </div>
+
+                    <div class="polaroid polaroid-3" style="--tilt: -5deg;">
+                        <div class="tape-strip"></div>
+                        <div class="polaroid-img-wrapper">
+                            <img src="assets/polaroid_3.jpg" alt="Memory 3 - Stargazing" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'><rect width=\'100%\' height=\'100%\' fill=\'%23ff4da6\'/><text x=\'50%\' y=\'50%\' font-size=\'40\' text-anchor=\'middle\'>✨</text></svg>';">
+                        </div>
+                        <p class="polaroid-text">Stargazing Nights ✨</p>
+                    </div>
+
+                    <div class="polaroid polaroid-4" style="--tilt: 7deg;">
+                        <div class="tape-strip"></div>
+                        <div class="polaroid-img-wrapper">
+                            <img src="assets/polaroid_4.jpg" alt="Memory 4 - Fun & Laughter" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'><rect width=\'100%\' height=\'100%\' fill=\'%23ff1a8c\'/><text x=\'50%\' y=\'50%\' font-size=\'40\' text-anchor=\'middle\'>🎡</text></svg>';">
+                        </div>
+                        <p class="polaroid-text">Endless Laughter 🎡</p>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-next" data-target="4">
+                    Next &gt;&gt;
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ================= SLIDE 4: UNO REVERSE CARD ================= -->
+        <section class="slide" id="slide4" data-slide="4">
+            <div class="glass-card uno-card-wrapper">
+                <p class="uno-hint">Tap the card to activate maximum love! 👇</p>
+                
+                <!-- UNO Reverse Card -->
+                <div class="uno-card" id="unoCard" title="Click me for love overflow!">
+                    <div class="uno-card-inner">
+                        <div class="uno-top-left">
+                            <span class="uno-corner-symbol">🔄</span>
+                        </div>
+                        
+                        <div class="uno-center-oval">
+                            <div class="uno-arrows">
+                                <svg viewBox="0 0 100 100" class="reverse-arrows-svg">
+                                    <path d="M 25,50 A 25,25 0 0,1 75,50 L 65,38 M 75,50 L 65,62" fill="none" stroke="#ff0066" stroke-width="8" stroke-linecap="round"/>
+                                    <path d="M 75,50 A 25,25 0 0,1 25,50 L 35,38 M 25,50 L 35,62" fill="none" stroke="#ff0066" stroke-width="8" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <h2 class="uno-text">LOVE YOU MORE 💖</h2>
+                        </div>
+
+                        <div class="uno-bottom-right">
+                            <span class="uno-corner-symbol">🔄</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-next" data-target="5">
+                    Next &gt;&gt;
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ================= SLIDE 5: LOVE COUPON ================= -->
+        <section class="slide" id="slide5" data-slide="5">
+            <div class="glass-card coupon-slide-card">
+                <h2 class="coupon-title">A Special Gift For You 🎁</h2>
+
+                <!-- Coupon Ticket Card -->
+                <div class="coupon-ticket" id="couponTicket">
+                    <div class="coupon-cutout cutout-left"></div>
+                    <div class="coupon-cutout cutout-right"></div>
+                    <div class="coupon-inner">
+                        <div class="coupon-header">
+                            <span class="coupon-tag">OFFICIAL BIRTHDAY VOUCHER</span>
+                            <span class="coupon-code">NO. 100% LOVE</span>
+                        </div>
+
+                        <div class="coupon-body">
+                            <div class="coupon-icon">🎟️</div>
+                            <div class="coupon-details">
+                                <h3>COUPON FOR:</h3>
+                                <p class="coupon-benefit">FREE HUGS &amp; KISSES 💋</p>
+                                <span class="coupon-validity">Valid: Forever &amp; Redeemable Anytime!</span>
+                            </div>
+                        </div>
+
+                        <button class="btn-claim" id="claimBtn">
+                            Claim Coupon 💖
+                        </button>
+                        
+                        <div class="stamp-redeemed" id="stampRedeemed">
+                            REDEEMED WITH LOVE 💕
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final Action Buttons -->
+                <div class="final-actions">
+                    <button class="btn btn-secondary btn-restart" id="restartBtn">
+                        &lt; Restart Presentation
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation Toolbar -->
+    <nav class="bottom-nav">
+        <button class="nav-arrow nav-prev" id="prevBtn" aria-label="Previous Slide" disabled>
+            &lt; Prev
+        </button>
+        
+        <div class="nav-dots" id="navDots">
+            <button class="dot active" data-slide="1" aria-label="Go to Slide 1"></button>
+            <button class="dot" data-slide="2" aria-label="Go to Slide 2"></button>
+            <button class="dot" data-slide="3" aria-label="Go to Slide 3"></button>
+            <button class="dot" data-slide="4" aria-label="Go to Slide 4"></button>
+            <button class="dot" data-slide="5" aria-label="Go to Slide 5"></button>
+        </div>
+
+        <span class="slide-indicator" id="slideIndicator">1 / 5</span>
+
+        <button class="nav-arrow nav-next" id="nextBtn" aria-label="Next Slide">
+            Next &gt;&gt;
+        </button>
+    </nav>
+
+    <!-- App Script -->
+    <script src="script.js"></script>
+</body>
+</html>
